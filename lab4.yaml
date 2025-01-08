@@ -1,0 +1,16 @@
+- name: My first play
+  hosts: remote
+  tasks:
+   - name: Ping my hosts
+     ansible.builtin.ping:
+   - name: Print message
+     ansible.builtin.debug:
+       msg: Hello world
+- name: Install module
+  hosts: all
+  become: true
+  tasks:
+   - name: install apace
+     ansible.builtin.apt:
+      name: apache2
+      state: present
