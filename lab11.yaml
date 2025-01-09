@@ -1,0 +1,14 @@
+- name: Install module
+  hosts: all
+  become: true
+  become_user: root 
+  tasks:
+    - name: Install Apache
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+      register: apache_install_result
+    - name: Debug the installation result
+      ansible.builtin.debug:
+        var: apache_install_result
+  tags: apache_install
