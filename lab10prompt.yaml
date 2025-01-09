@@ -1,0 +1,33 @@
+- name: My first play
+  hosts: remote
+  vars_prompt:
+    - name: Print_Message
+      prompt: What is your name?
+      private: false  
+  tasks:
+   - name: Ping my hosts
+     ansible.builtin.ping:
+   - name: Print message
+     ansible.builtin.debug:
+       msg: Print_Message
+  tags: print_message
+- name: Install module
+  hosts: all
+  become: true
+  become_user: root
+  tasks:
+   - name: install apache
+     ansible.builtin.apt:
+      name: apache2
+      state: present
+  tags: apache_install
+- name: Check Boolean
+  hosts: all
+  vars:
+    is_enabled: true
+  tasks:
+   - name: Boolean_value
+     ansible.builtin.debug:
+       msg: "Variable is true"
+     when: is_enabled
+  tags: check_test
