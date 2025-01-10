@@ -1,0 +1,6 @@
+- name: Use Merged Playbook Role
+  hosts: all
+  become: true
+  become_user: root
+  roles:
+    - role: merge-role
